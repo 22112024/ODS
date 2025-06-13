@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Baliarenda</title>
+  </head>
+  <body class="body">
+    <div class="wrapper">
+      <header class="header">
+        <div class="nav">
+          <div class="logo">
+            <a href="#"><img src="img/logo.svg" alt="logo" /></a>
+          </div>
+          <div class="information" id="informationButton">
+            <a href="#"><img src="img/information.svg" alt="Information" /></a>
+          </div>
+  
+          <div class="overlay" id="overlay"></div>
+          <div class="information_menu" id="informationMenu">
+            <div class="close_button" onclick="closeInformationMenu()">
+              <img src="img/close_button.svg" alt="Close button" />
+            </div>
+            <form class="information_form" method="post">
+              <div class="information_text">
+                <p>Baliarenda - бесплатная платформа поиска жилья на Бали.</p>
+                <p>
+                  На платформе размещаются в реальном времени объявления об аренде
+                  вилл, домов, гестхаусов, отелей, апартаментов и комнат.
+                </p>
+                <p>Публикуются только актуальные предложения без дублей и спама.</p>
+                <p>
+                  Сервис абсолютно бесплатен. Мы предоставляем прямые контакты без
+                  посредников.
+                </p>
+              </div>
+              <div class="link_telegram_channel">
+                <span>t.me/baliarenda_group</span>
+                <button
+                  class="form_button"
+                  type="button"
+                  onclick="openLink('https://t.me/baliarenda_group')"
+                >
+                  <img src="img/send.svg" alt="Send" />
+                </button>
+              </div>
+              <div class="link_telegram_bot">
+                <span>t.me/baliarenda</span>
+                <button
+                  class="form_button"
+                  type="button"
+                  onclick="openLink('https://t.me/baliarenda')"
+                >
+                  <img src="img/send.svg" alt="Send" />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </header>
+      
+      <main class="main">
+    
+        <div class="search_section">
+          <ul class="search_filters">
+            <li class="district">
+                <img
+                src="img/district.svg"
+                alt="District icon"
+                class="search_icon district_icon"
+              />
+              <a id="district_input" href="#">
+                Район <br /><span class="sub_text">мультивыбор</span>
+              </a>
+              <img src="img/searcharrow.svg" alt="Arrow" class="arrow_bottom" />
+              <div class="dropdown_menu district_dropdown_menu" id="district_dropdown">
+                <ul class="li_checkbox">
+                  <li><input type="checkbox" id="canggu" /><label for="canggu">Чангу</label></li>
+                  <li><input type="checkbox" id="seminyak" /><label for="seminyak">Семиньяк</label></li>
+                  <li><input type="checkbox" id="ubud" /><label for="ubud">Убуд</label></li>
+                  <li><input type="checkbox" id="kuta" /><label for="kuta">Кута</label></li>
+                  <li><input type="checkbox" id="nusa_dua" /><label for="nusa_dua">Нуса Дуа</label></li>
+                  <li><input type="checkbox" id="sanur" /><label for="sanur">Санур</label></li>
+                  <li><input type="checkbox" id="jimbaran" /><label for="jimbaran">Джимбаран</label></li>
+                  <li><input type="checkbox" id="kerobokan" /><label for="kerobokan">Керобокан</label></li>
+                  <li><input type="checkbox" id="lovina" /><label for="lovina">Ловина</label></li>
+                  <li><input type="checkbox" id="pemuteran" /><label for="pemuteran">Пемутаран</label></li>
+                  <li><input type="checkbox" id="amed" /><label for="amed">Амед</label></li>
+                  <li><input type="checkbox" id="padangbai" /><label for="padangbai">Падангбай</label></li>
+                  <li><input type="checkbox" id="candidasa" /><label for="candidasa">Чандидаса</label></li>
+                  <li><input type="checkbox" id="uluwatu" /><label for="uluwatu">Улувату</label></li>
+                  <li><input type="checkbox" id="mengwi" /><label for="mengwi">Менгви</label></li>
+                  <li><input type="checkbox" id="tegallalang" /><label for="tegallalang">Тегалаланг</label></li>
+                  <li><input type="checkbox" id="bangli" /><label for="bangli">Бангли</label></li>
+                  <li><input type="checkbox" id="tabanan" /><label for="tabanan">Табанан</label></li>
+                  <li><input type="checkbox" id="gilimanuk" /><label for="gilimanuk">Гилиманук</label></li>
+                  <li><input type="checkbox" id="nusa_penida" /><label for="nusa_penida">Нуса Пенида</label></li>
+                  <li><input type="checkbox" id="kintamani" /><label for="kintamani">Кинтамани</label></li>
+                  <li><input type="checkbox" id="seririt" /><label for="seririt">Серирит</label></li>
+                </ul>
+                <button id="district_saveButton" class="save_button">Сохранить</button>
+              </div>
+            </li>
+
+            <div class="separator_line"></div>
+            <li class="type">
+              <img src="img/house.svg" alt="Home icon" class="search_icon home_icon" />
+              <a id="type_input" href="#">Тип жилья <br /><span class="sub_text">мультивыбор</span></a>
+              <img src="img/searcharrow.svg" alt="Arrow" class="arrow_bottom" />
+              <div class="dropdown_menu type_dropdown_menu" id="type_dropdown">
+                <ul class="li_checkbox">
+                  <li><input type="checkbox" id="villa" /><label for="villa">Вилла</label></li>
+                  <li><input type="checkbox" id="house" /><label for="house">Дом</label></li>
+                  <li><input type="checkbox" id="apartment" /><label for="apartment">Апартаменты</label></li>
+                  <li><input type="checkbox" id="room" /><label for="room">Комната</label></li>
+                  <li><input type="checkbox" id="townhouse" /><label for="townhouse">Таунхаус</label></li>
+                  <li><input type="checkbox" id="hotel" /><label for="hotel">Отель</label></li>
+                </ul>
+                <button id="type_saveButton" class="save_button">Сохранить</button>
+              </div>
+            </li>
+            
+            <div class="separator_line"></div>
+            <li class="rooms">
+                <img src="img/rooms.svg" alt="Home icon" class="search_icon home_icon" />
+                <a id="rooms_input" href="#">Комнаты </br>
+                <div class="rooms_menu" id="rooms_menu">
+                  <ul class="li_checkbox">
+                    <li class="input_fields">
+                      <input type="number" id="rooms_from" data-max-digits="1" name="price" required/>
+                      <label for="price">от</label>
+                    </li>
+                    <li>-</li>   
+                    <li class="input_fields">
+                      <input type="number" id="rooms_to" data-max-digits="1" name="price" required/>
+                      <label for="price">до</label>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </li>
+
+            <div class="separator_line"></div>
+            <li class="term">
+              <img src="img/calendar.svg" alt="Term icon" class="search_icon term_icon" />
+              <a id="term_input" href="#">Период <br /><span class="sub_text">мультивыборо</span></a>
+              <img src="img/searcharrow.svg" alt="Arrow" class="arrow_bottom" />
+              <div class="dropdown_menu term_dropdown_menu" id="term_dropdown">
+                <ul class="li_checkbox">
+                  <li><input type="checkbox" id="daily" /><label for="daily">Посуточно</label></li>
+                  <li><input type="checkbox" id="monthly" /><label for="monthly">Месяц</label></li>
+                  <li><input type="checkbox" id="weekly" /><label for="weekly">Неделя</label></li>
+                  <li><input type="checkbox" id="yearly" /><label for="yearly">Год</label></li>
+                </ul>
+                <button id="term_saveButton" class="save_button">Сохранить</button>
+              </div>
+            </li>
+
+            <div class="separator_line"></div>
+            <li class="price">
+              <img src="img/price.svg" alt="Price icon" class="search_icon price_icon" />
+              <a id="price_input" href="#">Цена <br /><span class="sub_text">мультивыбор</span></a>
+              <img src="img/searcharrow.svg" alt="Arrow" class="arrow_bottom" />
+              <div class="dropdown_menu price_dropdown_menu" id="price_dropdown">
+                <ul class="li_checkbox">
+                  <li class="input_fields">
+                    <input type="number" id="price_from" data-max-digits="3" name="price" required/>
+                    <label for="price">от</label>
+                  </li>
+                  <li class="input_fields">
+                    <input type="number" id="price_to" data-max-digits="3" name="price" required/>
+                    <label for="price">до</label>
+                  </li>
+                  <ul class="choose_fields">
+                    <li><button type="button" class="choose_price" data-price="per_day" value="в день">цена за день</button></li>
+                    <li><button type="button" class="choose_price" data-price="per_week" value="в нед">цена за неделю</button></li>
+                    <li><button type="button" class="choose_price" data-price="per_month" value="в мес">цена за месяц</button></li>
+                    <li><button type="button" class="choose_price" data-price="per_year" value="в год">цена за год</button></li>
+                  </ul>
+                </ul>
+                <button id="price_saveButton" class="save_button">Сохранить</button>
+              </div>
+            </li>
+
+            <div class="separator_line"></div>
+            <li class="filter">
+              <a id="filter_input" href="#"><img src="img/filter.svg" alt="Filter icon" class="filter_icon" /></a>
+              <img src="img/mobile_filter.svg" alt="Mobile Filter icon" class="search_icon filter_mobile_icon" />
+              <a id="filter_input_mobile" href="#"><span class="filter_text">Фильтр</span><span class="sub_text">мультивыбор</span></a>
+              <img src="img/searcharrow.svg" alt="Arrow" class="arrow_filter" />
+              <div class="dropdown_menu filter_dropdown_menu" id="filter_dropdown">
+                <ul class="li_checkbox">
+                  <li><input type="checkbox" id="territory" /><label for="territory">Территория</label></li>
+                  <li><input type="checkbox" id="pool" /><label for="pool">Бассейн</label></li>
+                  <li><input type="checkbox" id="rooftop" /><label for="sea">Руфтоп</label></li>
+                  <li><input type="checkbox" id="terrace" /><label for="jungle">Терраса</label></li>
+                  <li><input type="checkbox" id="cleaning" /><label for="cleaning">Уборка</label></li>
+                  <li><input type="checkbox" id="parking" /><label for="parking">Парковка</label></li>
+                  <li><input type="checkbox" id="electricity" /><label for="hotel">Электричество</label></li>
+                </ul>
+                <button id="filter_saveButton" class="save_button">Сохранить</button>
+              </div>
+            </li>
+          </ul>
+          <div class="search_buttom">
+            <span class="button_text"></span>
+            <span class="button_icon">
+              <img src="img/search_icon.svg" alt="Search Icon" class="icon_image">
+            </span>
+          </div>
+        </div>
+        
+        <div class="card_section">
+          <div class="card" onclick="window.location.href='discriptionnew.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image10.jpg.lnk" alt="Photo" class="slider_image"/>
+                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>             
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Семиньяк</li>
+                <li>Квартира, 2 комнаты</li>
+                <li>
+                  <span class="text_card_price">7 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image8.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>
+                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Чангу, Берава</li>
+                <li>Комната, 1 комната</li>
+                <li>
+                  <span class="text_card_price">8 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="card" onclick="window.location.href='discriptionnew.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image3.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>
+                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Нуса Пенида</li>
+                <li>Вилла, 4 комнаты</li>
+                <li>
+                  <span class="text_card_price">12 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>
+                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Бангви</li>
+                <li>Вилла, 4 комнаты</li>
+                <li>
+                  <span class="text_card_price">44 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Чангу, Берава</li>
+                <li>Комната, 1 комната</li>
+                <li>
+                  <span class="text_card_price">17 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image7.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Нуса Пенида</li>
+                <li>Вилла, 4 комнаты</li>
+                <li>
+                  <span class="text_card_price">111 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image8.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Нуса Пенида</li>
+                <li>Вилла, 4 комнаты</li>
+                <li>
+                  <span class="text_card_price">71 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image9.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Бангви</li>
+                <li>Вилла, 4 комнаты</li>
+                <li>
+                  <span class="text_card_price">41 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image11.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Чангу, Берава</li>
+                <li>Комната, 1 комната</li>
+                <li>
+                  <span class="text_card_price">7 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image10.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>
+                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Бангви</li>
+                <li>Вилла, 4 комнаты</li>
+                <li>
+                  <span class="text_card_price">112 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image3.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Бангви</li>
+                <li>Вилла, 4 комнаты</li>
+                <li>
+                  <span class="text_card_price">112 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" onclick="window.location.href='discription.html';">
+            <div class="image_card">
+              <div class="card_image_svg" >
+                <img src="img/about_image4.jpg.lnk" alt="Photo" class="slider_image"/>
+                <img src="img/about_image5.jpg.lnk" alt="Photo" class="slider_image"/>                <button class="card_slider_btn card_slider_btn_left">
+                  <i class="fas fa-chevron-left"><img src="img/main_slider_btn_left.svg" alt="Sider button"></i>
+                </button>
+                <button class="card_slider_btn card_slider_btn_right" >
+                  <i class="fas fa-chevron-right"><img src="img/main_slider_btn_right.svg" alt="Slider button"></i>
+                </button>
+              </div>
+              <svg class="star_icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="body_card">
+              <ul class="text_card">
+                <li>Чангу, Берава</li>
+                <li>Комната, 1 комната</li>
+                <li>
+                  <span class="text_card_price">12 млн</span>
+                  <span class="text_card_period">/месяц</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      </main>
+
+      <button class="go-top"><img src="img/go-top.svg" alt=""></button>
+
+
+      <footer class="footer">
+        <ul class="footer_list">
+          <li>
+            <span class="footerd_baliarenda_left">© Baliarenda</span>
+            <span class="footerd_baliarenda_right"> – All rights reserved</span>
+          <li>  
+          <li>
+            <a href="https://t.me/baliarenda_group"><img
+              src="img/telegram.svg"
+              alt="Telegram channel"
+              class="footer_channel"
+            />Телеграм канал</a>
+          </li>
+          <li>
+            <a href="https://t.me/baliarenda"><img src="img/telegram.svg" alt="Telegram bot" class="footer_bot" />Телеграм бот</a>
+          </li>
+        </ul>
+      </footer>
+    </div>
+    <script src="script.js"></script>    
+  </body>
+</html>
